@@ -1,0 +1,10 @@
+Create a GUI for the Game of Life.
+Users should be able to:
+
+Specify size of the world at the command line.
+interactively specify which cells are alive.
+Step through from generation to generation, running the game
+Modify the world as the simulation proceeds.
+
+Note: for this assignment, do not create additional Threads, i.e. do not create an instance of Thread.
+You are free to use whatever other aspect of a GUI interface that you like.

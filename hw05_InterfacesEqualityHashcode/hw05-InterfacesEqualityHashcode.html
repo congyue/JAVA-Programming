@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/cs905.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>CS9053 Homework</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<style type="text/css">
+<!--
+.style1 {font-size: small}
+-->
+</style>
+</head>
+
+<body>
+<h1 align="center">CS9053 Introduction to Java</h1>
+<!-- InstanceBeginEditable name="Body" -->
+<h2>Homework 5</h2>
+<h3>Focus:</h3>
+<p>Given a set of classes, implement equality, hashcode, compareTo and clone.</p>
+<h3>Details:</h3>
+<p>The classes: </p>
+<ul>
+  <li>Car</li>
+  <li>Wheel</li>
+  <li>Engine</li>
+</ul>
+<p>The task: </p>
+<ul>
+  <li>Implement the classes. </li>
+  <li>Write good test code for all features.</li>
+  <li>Provide reasonable fields. </li>
+  <li>For Car, override equality and hashcode. Implement the Comparable and Cloneable interfaces.</li>
+  <li>Of course, every classe should have appropriate toString method.</li>
+</ul>
+<p>Specifics:</p>
+<ul>
+  <li>A Car has an engine and some number of wheels. Not all cars are built to hold four wheels, some have only three while others have more. But whatever they are built for, that is the max number they can hold. </li>
+  <li>When a car is built (i.e. <em>constructed</em>), an engine is created for it and so are the wheels that it will use.
+    <ul>
+      <li>The car's constructor will create the engine and all of the wheels. How? Based on the information provided. E.g., the number of wheels, their brand, etc.</li>
+    </ul>
+  </li>
+  <li>Wheels can be removed and new ones added, as can engines.
+    <ul>
+      <li>When removing or adding a wheel, you must specify which wheel &quot;position&quot;.</li>
+    </ul>
+  </li>
+  <li>Engines have, at the least, a type, such as V6, and a horsepower.</li>
+  <li>Wheels have a brand and a radius.</li>
+</ul>
+<!-- InstanceEndEditable -->
+<p><a href="http://cis.poly.edu/jsterling/cs905" class="style1">Home</a></p>
+<hr />
+<p class="style1">Maintained by <a href="http://cis.poly.edu/jsterling">John Sterling</a> (<a href="mailto:jsterling@poly.edu">jsterling@poly.edu</a>)  </p>
+</body>
+<!-- InstanceEnd --></html>

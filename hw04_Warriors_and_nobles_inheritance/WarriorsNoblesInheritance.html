@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/cs905.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>CS9053 - Homework</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<style type="text/css">
+<!--
+.style1 {font-size: small}
+-->
+</style>
+</head>
+
+<body>
+<h1 align="center">CS9053 Introduction to Java</h1>
+<!-- InstanceBeginEditable name="Body" -->
+<h2>Focus</h2>
+<ul>
+  <li>Inheritance</li>
+</ul>
+<h2>Problem: </h2>
+<p>This is a follow-up to homework 3. There you defined classes for nobles and warriors.</p>
+<p>It turns out that there is more than one type of noble. Some
+nobles, instead of hiring others to fight their battles, actually do
+the fighting themselves! They have their own strength, rather than
+depending on the strengths of others. Nobles who can fight their own
+battles are commonly called Those With Strength, whereas the nobles
+who hire others to fight are known as Lords of the Land. </p>
+<p>It also turns out that there are are more types of fighters than were known of before. Some warriors are archers and others are swordsmen. Not only that but there are others besides warriors who can be hired to protect the Lords. </p>
+<p>There are also Wizards! Wizards are <em>not</em> Warriors! </p>
+<p>How do these various Protectors differ? They differ in their ways of fighting: </p>
+<ul>
+  <li>Wizards state &quot;POOF&quot;. It is such a hard job to control the strength expended 
+    with magic!</li>
+  <li>Archers
+      <ul>
+        <li>who fight by stating &quot;TWANG. Take that in the name of  my lord, 
+        __________&quot; (whence he shouts the name of the lord he is sworn to defend) </li>
+      </ul>
+  </li>
+  <li>Swordsmen
+          <ul>
+            <li>who fight by stating &quot;CLANG. Take that in the  name of my 
+              lord, __________&quot; (whence he shouts the name of the lord he is sworn 
+              to defend) </li>
+          </ul>
+  </li>
+</ul>
+<h3>Loss of Strength</h3>
+<p>Each entity that has strength loses it in the same manor as described in hw03.</p>
+<h3>Death</h3>
+<p>It's a sad topic, but one we do have to address (and probably should have addressed in the previous homework):</p>
+<ul>
+  <li>People die when they lose a battle, whether they are a Noble or a Protector. They cannot be dead unless they have actually been slain.</li>
+  <li> Lords who are dead are in no position to hire anyone.  Any attempt by a dead Lord to hire someone will simple fail and the Protector will remain unhired.</li>
+  <li>However curiously, as has been seen before, Nobles can declare battle even though they are dead.</li>
+  <li>A Protector who is dead, however, cannot fight and so will not have anything to say, even if his Lord does go into battle again. (He also cannot runaway, be hired, etc.)</li>
+</ul>
+<h3>Design Issues</h3>
+<ul>
+  <li>Remember the focus is the use of inheritance. </li>
+  <li>What can go in the base class and what should go in the derived class?</li>
+  <li>While the problem may seem contrived, the point is to place as
+  much code <u>as high as possible</u>, but no higher.
+    <ul>
+      <li>For example, note that the different Warrior types
+      &quot;fight&quot; in a similar way, by saying almost the same
+      thing.</li>
+      <li>What is different between Lords and Persons with Strength?
+      One has and army and the other doesn't.  One has to query his
+      army to compute his strength, while the other can just store
+      it.</li>
+      <li>What should be abstract?</li>
+    </ul>
+  <li>Don't use instanceof!  Use polymorphism.</li>
+  </li>
+  <li>Battling involves determing who is alive, what the strengths of
+  the armies are, etc. While the way in which these things are done
+  may vary with the type of noble, the overall battle function does
+  not need to change. It should be defined once and only once in the
+  base class.</li>
+  <li>And of course don't forget the basics of good code from previous
+  assignements!</li>
+</ul>
+<h3>Test Code</h3>
+<pre><code>class TestInheritance {
+    public static void main(String[] args) {
+
+        Lord sam = new Lord("Sam");
+        Lord joe = new Lord("Joe");
+        Lord janet = new Lord(&quot;Janet&quot;);
+
+        PersonWithStrength randy = new PersonWithStrength("Randolf the Elder", 250);
+        PersonWithStrength barclay = new PersonWithStrength(&quot;Barclay the Bold&quot;, 300);
+
+        Swordsman hardy = new Swordsman(&quot;TuckTuckTheHardy&quot;, 60);
+        Swordsman stout = new Swordsman(&quot;TuckTuckTheStout&quot;, 40);
+        Archer samantha = new Archer("Samantha", 50);
+        Archer pethora = new Archer(&quot;Pethora&quot;, 50);	
+        Wizard thora = new Wizard(&quot;Thorapleth&quot;, 70);
+ 
+        sam.hire(samantha);
+        janet.hire(hardy);	
+        janet.hire(stout);
+	
+        janet.hire(thora);
+        joe.battle(randy);        
+        joe.battle(sam);	
+        janet.battle(barclay);
+
+        janet.hire(samantha);	
+        janet.hire(pethora);
+	
+        janet.battle(barclay);	
+        sam.battle(barclay);	
+        joe.battle(barclay);
+
+        thora.runsaway();
+
+        System.out.println(sam);
+        System.out.println(joe);
+        System.out.println(janet);
+        System.out.println(randy);
+        System.out.println(barclay);
+    }    
+}</code>
+</pre>
+<h3>Output</h3>
+<p>Output should follow the same rules as in the previous assignment with the additions mentioned above.</p>
+<blockquote>
+<pre><kbd>
+Joe battles Randolf the Elder
+Randolf the Elder defeats Joe
+Joe battles Sam
+He's dead, Sam
+Janet battles Barclay the Bold
+CLANG!  TuckTuckTheHardy says: Take that in the name of my lord, Janet
+CLANG!  TuckTuckTheStout says: Take that in the name of my lord, Janet
+POOF
+Barclay the Bold defeats Janet
+Janet could not hire Samantha
+Janet could not hire Pethora
+Janet battles Barclay the Bold
+He's dead, Barclay the Bold
+Sam battles Barclay the Bold
+TWANG!  Samantha says: Take that in the name of my lord, Sam
+Barclay the Bold defeats Sam
+Joe battles Barclay the Bold
+He's dead, Barclay the Bold
+Sam has an army of 1
+    Samantha: 0.0
+Joe has an army of 0
+Janet has an army of 3
+    TuckTuckTheHardy: 0.0
+    TuckTuckTheStout: 0.0
+    Thorapleth: 0.0
+Randolf the Elder: 250.0
+Barclay the Bold: 80.0
+</kbd></pre>
+</blockquote>
+<h3>What To Do </h3>
+<p>Turn in a single zip file, hw04.zip, containing your source files.</p>
+<p>&nbsp;</p>
+<!-- InstanceEndEditable -->
+<p><a href="http://cis.poly.edu/jsterling/cs905" class="style1">Home</a></p>
+<hr />
+<p class="style1">Maintained by <a href="http://cis.poly.edu/jsterling">John Sterling</a> (<a href="mailto:jsterling@poly.edu">jsterling@poly.edu</a>)  </p>
+</body>
+<!-- InstanceEnd --></html>

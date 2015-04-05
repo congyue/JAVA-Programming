@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CS9053 - Homework</title>
+    <meta charset="UTF-8">
+ </head>
+
+  <body>
+<h1 align="center">CS9053 Introduction to Java</h1>
+<h2>Homework 1 </h2>
+<ul>
+  <li>Install the <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java jdk</a> on your computer. </li>
+  <li>Edit, compile and run a Hello World style program on your own computer. (Don't hand this in.)</li>
+  <li>Read <a href="http://cis.poly.edu/jsterling/cs9053/java-overview-1.html"><em>The Java Language: An Overview</em></a> </li>
+  <li>Read <em>at least</em> the first two chapters in Core Java.</li>
+  <li>Implement Conway's game
+  of <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">life</a>
+  in a language<strong> <u>other than Java</u></strong>.  (You can
+  find lots of other info on the web.)
+    <ul>
+      <li>Do not &quot;query the user&quot; for anything. The grader
+      does not want to have to type in anything after he starts
+      running your program.</li>
+      <li>Get the initial state from a file.  Assume the file's name
+      is &quot;life.txt&quot; and is in the current working directory.<br>
+      No, do not hardcode an absolute pathname!
+        <ul>
+          <li>The first line of the file will have two integers,
+            <ul>
+              <li> the first is how many rows there are in the world </li>
+              <li> the second is how many  columns there are in the world </li>
+            </ul>
+          </li>
+          <li>Each row will have spaces and asterisks.
+            <ul>
+              <li>Spaces represent empty cells</li>
+              <li>Asterisks represent occupied cells </li>
+            </ul>
+          </li>
+          <li>If a row is &quot;short&quot;, then assume the missing
+          characters are blank.</li>
+          <li>If a row is &quot;long&quot;, then ignore the extra
+          characters. </li>
+          <li>If there are not enough rows in the file, then assume
+          that the missing rows should be filled with empty
+          cells. </li>
+        </ul>
+      </li>
+      <li>Display each &quot;generation&quot; of the game to standard
+      output (ie. the screen). Generate 10 generations beyond the one
+      you read from the file.</li>
+      <li>Feel free to use command line parameters, if you like, to
+      allow other input files or generation counts to be used. This is
+      not required, nor is it extra credit, but you may find it
+      convenient while testing.</li>
+      <li>The rules of life say:
+        <ul>
+          <li>A living cell with two or three neighboring living cells
+          survives into the next generation.  A living cell with fewer
+          than two or more than three living neighbors will die.</li>
+          <li> Each empty/dead cell that has exactly three living
+          neighbors--no more, no fewer--is a birth cell. It will be
+          alive in the next generation. </li>
+        </ul>
+      </li>
+      <li>Suggestion: Create an extra row on the top and bottom as
+      well as an extra column to the right and the left of the actual
+      data. Mark the extra cells as dead. This will simplify your
+      code, as you won't need special checks for &quot;boundary&quot;
+      cells. </li>
+      <li>Sample <a href="life.txt">input</a>
+      and <a href="out.txt">output</a> for the program.</li>
+    </ul>
+  </li>
+</ul>
+<p><a href="http://cis.poly.edu/jsterling/cs9053">Home</a></p>
+<hr />
+<p >Maintained by <a href="http://cis.poly.edu/jsterling">John Sterling</a> (<a href="mailto:jsterling@poly.edu">jsterling@poly.edu</a>)  </p>
+</body>
+</html>

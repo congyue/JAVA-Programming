@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- #BeginTemplate "/Templates/cs905.dwt" --><!-- DW6 -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- #BeginEditable "doctitle" -->
+<title>CS 9053 - Homework 3</title>
+<!-- #EndEditable -->
+<!-- #BeginEditable "head" --><!-- #EndEditable -->
+<style type="text/css">
+<!--
+.style1 {font-size: small}
+-->
+</style>
+</head>
+
+<body>
+<h1 align="center">CS9053 Introduction to Java</h1>
+<!-- #BeginEditable "Body" --> 
+<h2><b>Homework 3 </b></h2>
+<h2>Focus</h2>
+<ul>
+  <li>Classes</li>
+  <li>Association</li>
+  <li>Javadoc</li>
+</ul>
+<h3>Reading</h3>
+<ul>
+  <li>Read chapter 4 in Core Java.</li>
+</ul>
+<h2>Problem: </h2>
+<p>
+  We will model a game of medieval times. Our world is filled with
+  warriors and nobles. </p>
+<h3>Warriors</h3>
+<p>
+  Warriors, despite their name, would be happy to live their lives
+  quietly, if only it weren't for the need to earn a living and
+  satisfy the whims of their employers, the nobles. </p>
+<ul>
+  <li>A warrior may be employed by only one noble at a time. He cannot be hired by a second Noble if he is already employed.</li>
+  <li>He may also &quot;quit&quot;. </li>
+  <li>Each warrior starts out with a name and a certain amount of
+    strength.</li>
+</ul>
+<h3>Nobles</h3>
+<p>
+  Nobles don't have much to do except do battle with each
+  other. (We'll leave the feasting and other entertainments for
+  add-ons.) Of course the nobles are pretty wimpy themselves and would
+  lose if they didn't have warriors to do the dirty work. How does all
+  this work?</p>
+<ul>
+  <li>
+    A battle between nobles is won by the noble who commands
+    the <em>stronger</em> army. </li>
+  <li>
+    The army's strength is simply the combined strengths of all its
+    warriors.</li>
+  <li>
+    A battle is to the death. The losing noble is dead as are his
+    warriors and the warriors lose all of their strength.</li>
+  <li>
+    The winner does not walk away unscathed. All of the winner's men
+    will lose a portion of their strength equal to the ratio of the
+    enemy army's combined strength to their army's. If the losing army
+    had a combined strength that was 1/4 the size of the winning
+    army's, then each soldier in the winning army will have their own
+    strength reduced by 1/4.</li>
+  <li>
+    Even losers are allowed to pick a fight. It doesn't require having
+    any strength (or life!) in order to do battle with someone
+    else. Not that you stand much of a chance of winning anything, but
+    perhaps it's worth getting beaten (again) just to have those 15
+    seconds of fame.</li>
+</ul>
+<h3>Death</h3>
+<p>It's a sad topic, but one we do have to address:</p>
+<ul>
+  <li>
+    People die <em>when they lose</em> a battle, whether they are a
+    Noble or a Warrior.</li>
+  <li>
+    Nobles who are dead are in no position to hire anyone.  Any
+    attempt by a dead Noble to hire someone will fail and the Warrior
+    will remain unhired.</li>
+  <li>
+    However curiously, as has been seen before, Nobles can declare
+    battle even though they are dead.</li>
+  <li>
+    A Warrior who is dead cannot do anything. He cannot fight, cannot
+    run away, cannot be hired, etc.</li>
+</ul>
+<h3>Output</h3>
+<p>
+  Below is a sample test program and the output. As you can see you
+  need to override the toString method for Noble in order for it to
+  display the Noble's information. Furthermore, the battle method
+  displays two lines, one reporting who is fighting and the other the
+  result of the battle. Be sure to make your output match ours, in
+  order to make the grader's job easier.</p>
+<p>Test program:</p>
+<blockquote>
+  <pre><code>/*
+	TestWarriorsNobles
+*/
+
+class TestWarriorsNobles {
+    public static void  main(String[] args) {
+        Noble art = new Noble("King Arthur");
+        Noble lance = new Noble("Lancelot du Lac");
+        Noble jim = new Noble("Jim");
+        Noble linus = new Noble("Linus Torvalds");
+        Noble billie = new Noble("Bill Gates");
+
+        Warrior cheetah = new Warrior("Tarzan", 10);
+        Warrior wizard = new Warrior("Merlin", 15);
+        Warrior theGovernator = new Warrior("Conan", 12);
+        Warrior nimoy = new Warrior("Spock", 15);
+        Warrior lawless = new Warrior("Xena", 20);
+        Warrior mrGreen = new Warrior("Hulk", 8);
+        Warrior dylan = new Warrior("Hercules", 3);
+
+        jim.hire(nimoy);
+        lance.hire(theGovernator);
+        art.hire(wizard);
+        lance.hire(dylan);
+        linus.hire(lawless);
+        billie.hire(mrGreen);
+        art.hire(cheetah);
+
+        System.out.println(jim);
+        System.out.println(lance);
+        System.out.println(art);
+        System.out.println(linus);
+        System.out.println(billie);
+
+        cheetah.runaway();
+        System.out.println(art);
+
+        art.battle(lance);
+        jim.battle(lance);
+        linus.battle(billie);
+        billie.battle(lance);
+
+	System.out.println("====================");
+        System.out.println(jim);
+        System.out.println(lance);
+        System.out.println(art);
+        System.out.println(linus);
+        System.out.println(billie);
+    }
+}</code>
+</pre>
+</blockquote>
+<p> Example output:
+  <br>
+</p>
+<blockquote><code>
+ <pre>Jim has an army of 1
+    Spock: 15.0
+Lancelot du Lac has an army of 2
+    Conan: 12.0
+    Hercules: 3.0
+King Arthur has an army of 2
+    Merlin: 15.0
+    Tarzan: 10.0
+Linus Torvalds has an army of 1
+    Xena: 20.0
+Bill Gates has an army of 1
+    Hulk: 8.0
+So long King Arthur. I'm out'a here! -- Tarzan
+King Arthur has an army of 1
+    Merlin: 15.0
+King Arthur battles Lancelot du Lac
+Mutual Annihilation: King Arthur and Lancelot du Lac die at each other's hands
+Jim battles Lancelot du Lac
+He's dead, Jim
+Linus Torvalds battles Bill Gates
+Linus Torvalds defeats Bill Gates
+Bill Gates battles Lancelot du Lac
+Oh, NO! They're both dead!  Yuck!
+====================
+Jim has an army of 1
+    Spock: 15.0
+Lancelot du Lac has an army of 2
+    Conan: 0.0
+    Hercules: 0.0
+King Arthur has an army of 1
+    Merlin: 0.0
+Linus Torvalds has an army of 1
+    Xena: 12.0
+Bill Gates has an army of 1
+    Hulk: 0.0
+</pre></code></blockquote>
+<h3>Output Description</h3>
+<ul>
+  <li>
+    The <code>toString</code> method for <code>Noble</code> lists
+    information about the Noble and his army.<br />  (What's the best
+    way to display each Warrior's information?)
+  </li>
+  <li>The runaway method displays &quot;<code>So long </code>...&quot;</li>
+  <li>Each battle is reported by identifying 
+    <ul>
+      <li>who attacked whom.</li>
+      <li>who won.
+        <ul>
+          <li>If both Nobles were already dead, display  <code>&quot;Oh, NO!  They're both dead!  Yuck!&quot;</code></li>
+          
+          <li>Else if both were alive and their armies have equal strengths, display  <code>&quot;Mutual Annihilation...&quot;</code></li>
+          <li>Else if just one of them was dead, display <code>&quot;He's dead, ...&quot;</code></li>
+          <li>Otherwise report who defeated whom.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3>General guidelines</h3>
+<ul>
+  <li>
+    Code defensively.  Is a Warrior quitting when he doesn't even have
+    a job?  You don't want your code to crash, do you?  Check that
+    your objects are only doing things that make sense.</li>
+  <li>
+    Don't make unwarranted assumptions.  E.g. can you assume that
+    names are unique in this application?  Does it say so anywhere?
+    Is it necessary in order to solve the problem?  Then don't!</li>
+</ul>
+<h3>One more thing!  Javadoc</h3>
+Use javadoc-style comments in this and all subsequent assignments.
+<h3>Questions?</h3>
+<p>As usual, please raise them on the Discusion Board on My Poly.</p>
+<!-- #EndEditable -->
+<p><a href="http://cis.poly.edu/jsterling/cs905" class="style1">Home</a></p>
+<hr />
+<p class="style1">Maintained by <a href="http://cis.poly.edu/jsterling">John Sterling</a> (<a href="mailto:jsterling@poly.edu">jsterling@poly.edu</a>)  </p>
+</body>
+<!-- #EndTemplate --></html>
